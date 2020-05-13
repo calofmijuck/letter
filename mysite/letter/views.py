@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from .models import Message
 from django.shortcuts import get_object_or_404, render
 
+directory = ""
+
 def index(request):
     latest_question_list = Message.objects.order_by('-created')[:7]
     context = {'latest_question_list': latest_question_list}
@@ -40,6 +42,10 @@ def write(request):
     if 'error' in message_dict:
         return render(request, 'letter/write.html', message_dict)
     else:
-
-        print(sender, title, content)
+        f = open(directory + str(msg_id) + ".json", 'w')
+        f.write(str(message_dict))
+        f.close()
+        msg = Message.create(sender, title, content)
+        Message.save(msg)
+        msg_id = msg.id
         return render(request, 'letter/success.html', {})
