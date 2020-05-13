@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .models import Message
 from django.shortcuts import get_object_or_404, render
 
-directory = ""
+directory = "/home/zxcvber/letter-server/letters/"
 
 def index(request):
     latest_question_list = Message.objects.order_by('-created')[:7]
@@ -42,10 +42,11 @@ def write(request):
     if 'error' in message_dict:
         return render(request, 'letter/write.html', message_dict)
     else:
+        msg = Message.create(sender, title, content)
+        msg.save()
+        msg_id = msg.id
         f = open(directory + str(msg_id) + ".json", 'w')
+        message_dict['date'] = msg.created
         f.write(str(message_dict))
         f.close()
-        msg = Message.create(sender, title, content)
-        Message.save(msg)
-        msg_id = msg.id
         return render(request, 'letter/success.html', {})

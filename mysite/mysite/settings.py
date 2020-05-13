@@ -25,7 +25,7 @@ SECRET_KEY = 'zts460dxivn*fn)scu#3*!do$668=^*)47w*exdk()t_3#&19='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
