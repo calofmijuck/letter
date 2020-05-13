@@ -10,3 +10,8 @@ class Message(models.Model):
 
     def __str__(self):
         return self.sender + ":" + self.title
+
+    @classmethod
+    def create(cls, sender, title, content):
+        ret = cls(sender=sender, title=title, content=content)
+        return ret
