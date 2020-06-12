@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import Message
 from django.shortcuts import get_object_or_404, render
+import json
 
 directory = "/home/zxcvber/letter-server/letters/"
 
@@ -45,8 +46,10 @@ def write(request):
         msg = Message.create(sender, title, content)
         msg.save()
         msg_id = msg.id
-        f = open(directory + str(msg_id) + ".json", 'w')
-        message_dict['date'] = msg.created
-        f.write(str(message_dict))
-        f.close()
+        message_dict['id'] = msg_id
+        with open(directory + str(msg_id) + ".json", 'w') as f:
+            json.dump(message_dict, f)
+        # f = open(directory + str(msg_id) + ".json", 'w')
+        # f.write(str(message_dict))
+        # f.close()
         return render(request, 'letter/success.html', {})
