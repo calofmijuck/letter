@@ -10,7 +10,7 @@ RECENT_LETTERS = 10
 
 
 def index(request):
-    latest_message_list = Message.objects.order_by('-created')[:RECENT_LETTERS] 
+    latest_message_list = Message.objects.order_by('-created')[:RECENT_LETTERS]
     context = {'latest_message_list': latest_message_list}
     return render(request, 'letter/index.html', context)
 
@@ -24,7 +24,8 @@ def write(request):
 
     error = validate_message(title, sender, content)
     if error is not None:
-        message_dict = {'title': title, 'sender': sender, 'content': content, 'error': error}
+        message_dict = {'title': title, 'sender': sender,
+                        'content': content, 'error': error}
         return render(request, 'letter/write.html', message_dict)
 
     msg = Message.create(sender, title, content)
