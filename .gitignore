@@ -1,3 +1,5 @@
 __pycache__
 
 zip
+db.sqlite3
+.env

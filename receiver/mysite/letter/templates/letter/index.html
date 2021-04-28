@@ -5,16 +5,15 @@
 
 <a href="/write"><button>작성하기</button></a>
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li>{{ question.title }} ({{ question.sender }}) </li>
+{% if latest_message_list %}
+<ul>
+    {% for message in latest_message_list %}
+    <li>{{ message.title }} ({{ message.sender }}) </li>
     {% endfor %}
-    </ul>
+</ul>
 {% else %}
-    <p>아직 편지가 없어요 ㅠ</p>
+<p>아직 편지가 없어요 ㅠ</p>
 {% endif %}
-
 
 
 <style>
@@ -23,6 +22,7 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     button {
         border: none;
         background-color: black;
