@@ -3,36 +3,40 @@
 
 <a href="/"><button>돌아가기</button></a>
 
-{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+{% if error %}<p class="error-message">{{ error }}</p>{% endif %}
 
 <form method="post">
-{% csrf_token %}
-<h5>작성자</h5>
+    {% csrf_token %}
+    <h5>작성자</h5>
 
-<textarea class="s" type="text" name="sender">{{ sender }}</textarea><br>
+    <textarea class="sender" type="text" name="sender">{{ sender }}</textarea><br>
 
-<h5>제목</h5>
+    <h5>제목</h5>
 
-<textarea class="t" type="text" name="title">{{ title }}</textarea><br>
+    <textarea class="title" type="text" name="title">{{ title }}</textarea><br>
 
-<h5>내용 (1500자 이내)</h5>
+    <h5>내용 (1500자 이내)</h5>
 
-<textarea class="c" type="text" name="content">{{ content }}</textarea><br>
+    <textarea class="content" type="text" name="content">{{ content }}</textarea><br>
 
-<br>
+    <br>
 
-<input type="submit" value="보내기">
+    <input type="submit" value="보내기">
 
 </form>
 
 
 <style>
+    .error-message {
+        color: red;
+        font-weight: bold;
+    }
 
-    .s {
+    .sender {
         height: 50px;
     }
 
-    .t {
+    .title {
         height: 50px;
     }
 
