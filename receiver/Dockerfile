@@ -1,8 +1,9 @@
 FROM python:latest
 
-RUN pip3 install django python-dotenv && mkdir letters
+RUN apt update && apt install cron -y && service cron start && mkdir logs
 
-EXPOSE 80/tcp
+ADD requirements.txt /requirements.txt
+RUN pip3 install -r requirements.txt && mkdir letters
 
 COPY mysite /letter-server
 

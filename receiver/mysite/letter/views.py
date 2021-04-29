@@ -1,5 +1,6 @@
 from .models import Message
 from django.shortcuts import render
+from .sender import send_message
 import json
 
 from typing import Dict
@@ -8,11 +9,13 @@ DIRECTORY = '/letters/'
 
 RECENT_LETTERS = 10
 
+# include name
+
 
 def index(request):
     latest_message_list = Message.objects.order_by('-created')[:RECENT_LETTERS]
-    context = {'latest_message_list': latest_message_list}
-    return render(request, 'letter/index.html', context)
+    response = {'latest_message_list': latest_message_list}
+    return render(request, 'letter/index.html', response)
 
 
 def write(request):
@@ -24,14 +27,22 @@ def write(request):
 
     error = validate_message(title, sender, content)
     if error is not None:
-        message_dict = {'title': title, 'sender': sender,
-                        'content': content, 'error': error}
-        return render(request, 'letter/write.html', message_dict)
+        response = {'title': title, 'sender': sender,
+                    'content': content, 'error': error}
+        return render(request, 'letter/write.html', response)
 
-    msg = Message.create(sender, title, content)
-    msg.save()
+    message = Message.create(sender, title, content)
 
-    save_to_file(msg)
+    try:
+        send_message(message)
+        message.sent = True
+        print(f"[+] SENT: {message}")
+    except:
+        print(f"[-] SEND FAILED: {message}")
+    finally:
+        message.save()
+        save_to_file(message)
+
     return render(request, 'letter/success.html', {})
 
 
