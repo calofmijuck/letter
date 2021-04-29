@@ -2,19 +2,22 @@ from .models import Message
 from django.shortcuts import render
 from .sender import send_message
 import json
+from dotenv import load_dotenv
+import os
 
 from typing import Dict
+
+load_dotenv()
+NAME = os.environ['NAME']
 
 DIRECTORY = '/letters/'
 
 RECENT_LETTERS = 10
 
-# include name
-
 
 def index(request):
     latest_message_list = Message.objects.order_by('-created')[:RECENT_LETTERS]
-    response = {'latest_message_list': latest_message_list}
+    response = {'latest_message_list': latest_message_list, 'name': NAME}
     return render(request, 'letter/index.html', response)
 
 
