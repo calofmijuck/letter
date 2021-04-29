@@ -1,18 +1,11 @@
-from .models import Message
-from django.shortcuts import render
-from .sender import send_message
 import json
-from dotenv import load_dotenv
-import os
-
 from typing import Dict
 
-load_dotenv()
-NAME = os.environ['NAME']
+from django.shortcuts import render
 
-DIRECTORY = '/letters/'
-
-RECENT_LETTERS = 10
+from .models import Message
+from .sender import send_message
+from .config import RECENT_LETTERS, NAME, SUCCESS_DIRECTORY, FAILED_DIRECTORY
 
 
 def index(request):
@@ -35,18 +28,19 @@ def write(request):
         return render(request, 'letter/write.html', response)
 
     message = Message.create(sender, title, content)
+    message.save()
 
+    success = False
     try:
         send_message(message)
-        message.sent = True
+        success = True
         print(f"[+] SENT: {message}")
     except:
         print(f"[-] SEND FAILED: {message}")
     finally:
-        message.save()
-        save_to_file(message)
+        save_to_file(message, success)
 
-    return render(request, 'letter/success.html', {})
+    return render(request, 'letter/requested.html', {})
 
 
 def validate_message(title: str, sender: str, content: str) -> str:
@@ -62,7 +56,8 @@ def validate_message(title: str, sender: str, content: str) -> str:
         return None
 
 
-def save_to_file(message: Message):
-    with open(DIRECTORY + str(message.id) + '.json', 'w', encoding='utf-8') as f:
+def save_to_file(message: Message, success: bool):
+    directory = SUCCESS_DIRECTORY if success else FAILED_DIRECTORY
+    with open(directory + str(message.id) + '.json', 'w', encoding='utf-8') as f:
         json.dump(message.to_json(), f, ensure_ascii=False)
     return

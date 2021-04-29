@@ -1,20 +1,6 @@
 from .models import Message
-from dotenv import load_dotenv
 import thecampy
-import os
-
-load_dotenv()
-
-ENV = os.environ
-
-EMAIL = ENV['EMAIL']
-PASSWORD = ENV['PASSWORD']
-
-NAME = ENV['NAME']
-BIRTH = ENV['BIRTH']
-ENTER_DATE = ENV['ENTER_DATE']
-UNIT_NAME = ENV['UNIT_NAME']
-
+from .config import NAME, BIRTH, ENTER_DATE, UNIT_NAME, EMAIL, PASSWORD
 
 SOLDIER = thecampy.Soldier(
     NAME, BIRTH, ENTER_DATE, UNIT_NAME
