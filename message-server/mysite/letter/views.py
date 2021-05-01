@@ -1,18 +1,17 @@
-from .models import Message
-from django.shortcuts import render
 import json
-
 from typing import Dict
 
-DIRECTORY = '/letters/'
+from django.shortcuts import render
 
-RECENT_LETTERS = 10
+from .models import Message
+from .sender import send_message
+from .config import RECENT_LETTERS, NAME, DIRECTORY
 
 
 def index(request):
     latest_message_list = Message.objects.order_by('-created')[:RECENT_LETTERS]
-    context = {'latest_message_list': latest_message_list}
-    return render(request, 'letter/index.html', context)
+    response = {'latest_message_list': latest_message_list, 'name': NAME}
+    return render(request, 'letter/index.html', response)
 
 
 def write(request):
@@ -24,15 +23,24 @@ def write(request):
 
     error = validate_message(title, sender, content)
     if error is not None:
-        message_dict = {'title': title, 'sender': sender,
-                        'content': content, 'error': error}
-        return render(request, 'letter/write.html', message_dict)
+        response = {'title': title, 'sender': sender,
+                    'content': content, 'error': error}
+        return render(request, 'letter/write.html', response)
 
-    msg = Message.create(sender, title, content)
-    msg.save()
+    message = Message.create(sender, title, content)
+    message.save()
 
-    save_to_file(msg)
-    return render(request, 'letter/success.html', {})
+    try:
+        send_message(message)
+        message.sent = True
+        print(f"[+] SENT: {message}")
+    except:
+        print(f"[-] SEND FAILED: {message}")
+    finally:
+        message.save()
+        save_to_file(message)
+
+    return render(request, 'letter/requested.html', {})
 
 
 def validate_message(title: str, sender: str, content: str) -> str:
