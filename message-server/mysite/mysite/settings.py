@@ -126,6 +126,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRONJOBS = [
-    ('* * * * *', 'letter.cron.send_failed_messages', '>> /logs/cronjobs.log 2>&1'),
-    ('* * * * *', 'letter.cron.test', '>> /logs/test.log 2>&1'),
+    ('*/30 * * * *', 'letter.cron.send_failed_messages', '>> /logs/cronjobs.log 2>&1'),
+    ('*/30 * * * *', 'letter.cron.test', '>> /logs/test.log 2>&1'),
 ]
