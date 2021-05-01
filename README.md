@@ -1,6 +1,10 @@
+
 # Letter Site for Korean Army Training Center
 
 육군훈련소(KATC)에 있는 훈련병에게 인터넷 편지를 보내주는 사이트입니다.
+
+![Screenshot from 2021-05-01 09-55-16](https://user-images.githubusercontent.com/38686321/116766190-32c2a280-aa64-11eb-9c17-956140f5950a.png)
+![Screenshot from 2021-05-01 09-55-25](https://user-images.githubusercontent.com/38686321/116766192-33f3cf80-aa64-11eb-8487-9f4b5cc3063f.png)
 
 ## Using Docker
 
