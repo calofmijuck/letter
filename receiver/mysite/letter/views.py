@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from .models import Message
 from .sender import send_message
-from .config import RECENT_LETTERS, NAME, SUCCESS_DIRECTORY, FAILED_DIRECTORY
+from .config import RECENT_LETTERS, NAME, DIRECTORY
 
 
 def index(request):
@@ -30,15 +30,15 @@ def write(request):
     message = Message.create(sender, title, content)
     message.save()
 
-    success = False
     try:
         send_message(message)
-        success = True
+        message.sent = True
         print(f"[+] SENT: {message}")
     except:
         print(f"[-] SEND FAILED: {message}")
     finally:
-        save_to_file(message, success)
+        message.save()
+        save_to_file(message)
 
     return render(request, 'letter/requested.html', {})
 
@@ -56,8 +56,7 @@ def validate_message(title: str, sender: str, content: str) -> str:
         return None
 
 
-def save_to_file(message: Message, success: bool):
-    directory = SUCCESS_DIRECTORY if success else FAILED_DIRECTORY
-    with open(directory + str(message.id) + '.json', 'w', encoding='utf-8') as f:
+def save_to_file(message: Message):
+    with open(DIRECTORY + str(message.id) + '.json', 'w', encoding='utf-8') as f:
         json.dump(message.to_json(), f, ensure_ascii=False)
     return

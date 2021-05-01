@@ -7,6 +7,7 @@ class Message(models.Model):
     sender = models.CharField(max_length=20)
     title = models.CharField(max_length=100)
     content = models.CharField(max_length=1500)
+    sent = models.BooleanField(default=False)
     created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -18,4 +19,4 @@ class Message(models.Model):
         return ret
 
     def to_json(self):
-        return {"id": self.id, "sender": self.sender, "title": self.title, "content": self.content}
+        return {"id": self.id, "sender": self.sender, "title": self.title, "content": self.content, "created": str(self.created)}

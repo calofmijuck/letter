@@ -1,2 +1,0 @@
-# Run every hour
-0 * * * * /usr/local/bin/python /letter-server/resend.py >> /logs/resend.log 2>&1
