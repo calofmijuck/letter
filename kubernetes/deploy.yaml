@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: letter-server # modify here
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: letter-server-name # modify here
+      labels:
+        trainee: NAME # modify here
+    spec:
+      volumes:
+      - name: env
+        secret:
+          secretName: secret-name # modify here
+      - name: letters
+        hostPath:
+          path: /letters/NAME # modify here
+      containers:
+      - image: calofmijuck/message-server
+        name: message-server
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: env
+          mountPath: /env
+          readOnly: true
+        - name: letters
+          mountPath: /letters
+      - image: calofmijuck/news-crawler
+        name: news-crawler
+        volumeMounts:
+        - name: env
+          mountPath: /env
+          readOnly: true
+  selector:
+    matchLabels:
+      trainee: NAME # modify here
