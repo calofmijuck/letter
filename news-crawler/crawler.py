@@ -40,7 +40,7 @@ def get_overview(section, expanded=False):
     section_name = get_section_name(section)
     articles = get_articles(section)
     separator = '\n-------------------\n'
-    return section_name + separator + '\n'.join(articles.keys()) + '\n'
+    return section_name + separator + '||\n'.join(articles.keys()) + '||\n'
 
 
 def get_body_text(article, chars=300):
