@@ -1,8 +1,7 @@
 from datetime import datetime
 
 import thecampy
-
-from config import EMAIL, PASSWORD, NAME, BIRTH, ENTER_DATE, UNIT_NAME
+from config import BIRTH, EMAIL, ENTER_DATE, NAME, PASSWORD, UNIT_NAME
 
 SOLDIER = thecampy.Soldier(
     NAME, BIRTH, ENTER_DATE, UNIT_NAME

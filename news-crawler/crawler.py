@@ -2,12 +2,11 @@
 # Forked from https://github.com/SyphonArch/news-relay
 
 import os
+import re
 from datetime import datetime
 
 import requests
-import re
 from bs4 import BeautifulSoup
-
 from sender import send
 
 BASE_ADDRESS = 'https://news.naver.com/'

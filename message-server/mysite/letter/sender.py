@@ -1,6 +1,7 @@
-from .models import Message
 import thecampy
-from .config import NAME, BIRTH, ENTER_DATE, UNIT_NAME, EMAIL, PASSWORD
+
+from .config import BIRTH, EMAIL, ENTER_DATE, NAME, PASSWORD, UNIT_NAME
+from .models import Message
 
 SOLDIER = thecampy.Soldier(
     NAME, BIRTH, ENTER_DATE, UNIT_NAME

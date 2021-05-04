@@ -3,9 +3,9 @@ from typing import Dict
 
 from django.shortcuts import render
 
+from .config import DIRECTORY, NAME, RECENT_LETTERS
 from .models import Message
 from .sender import send_message
-from .config import RECENT_LETTERS, NAME, DIRECTORY
 
 
 def index(request):
