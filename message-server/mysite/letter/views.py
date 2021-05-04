@@ -1,4 +1,5 @@
 import json
+import sys
 from typing import Dict
 
 from django.shortcuts import render
@@ -33,9 +34,9 @@ def write(request):
     try:
         send_message(message)
         message.sent = True
-        print(f"[+] SENT: {message}")
+        print(f"[+] SENT: {message}", file=sys.stderr)
     except:
-        print(f"[-] SEND FAILED: {message}")
+        print(f"[-] SEND FAILED: {message}", file=sys.stderr)
     finally:
         message.save()
         save_to_file(message)
