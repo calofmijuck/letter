@@ -6,4 +6,4 @@ python-dotenv==0.17.1
 requests==2.25.1
 soupsieve==2.2.1
 thecampy==2.0.0
-urllib3==1.26.4
+urllib3==1.26.5
