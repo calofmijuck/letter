@@ -19,4 +19,10 @@ class Message(models.Model):
         return ret
 
     def to_json(self):
-        return {"id": self.id, "sender": self.sender, "title": self.title, "content": self.content, "created": str(self.created)}
+        return {
+            "id": self.id,
+            "sender": self.sender,
+            "title": self.title,
+            "content": self.content,
+            "created": str(self.created),
+        }

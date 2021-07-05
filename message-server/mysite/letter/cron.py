@@ -16,7 +16,7 @@ def send_failed_messages():
             message.sent = True
             message.save()
             print(f"[+] RE-SENT: {message}")
-        except:
+        except Exception:
             print(f"[-] RE-SEND FAILED: {message}")
 
 
