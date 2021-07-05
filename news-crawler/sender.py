@@ -26,9 +26,16 @@ def send(subject, content):
             msg_num += 1
 
 
+def format_content(content):
+    content = "<p>" + content.replace("\n", "</p><p>") + "</p>"
+    content = content.replace("<p></p>", "<p>&nbsp;</p>")
+    return content
+
+
 def _send(subject, content):
     try:
-        message = thecampy.Message(subject, content)
+        formatted_content = format_content(content)
+        message = thecampy.Message(subject, formatted_content)
         client = thecampy.client()
         client.login(EMAIL, PASSWORD)
         client.get_soldier(SOLDIER)

@@ -8,9 +8,14 @@ SOLDIER = thecampy.Soldier(NAME, BIRTH, ENTER_DATE, UNIT_NAME)
 client = thecampy.client()
 
 
+def format_content(content):
+    content = "<p>" + content.replace("\n", "</p><p>") + "</p>"
+    content = content.replace("<p></p>", "<p>&nbsp;</p>")
+    return content
+
 def send_message(message: Message):
     title = f"({message.sender}) {message.title}"
-    message = thecampy.Message(title, message.content)
+    message = thecampy.Message(title, format_content(message.content))
 
     client.login(EMAIL, PASSWORD)
     client.get_soldier(SOLDIER)
