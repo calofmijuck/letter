@@ -20,6 +20,7 @@ def write(request):
 
     data = request.POST
     title, sender, content = data["title"], data["sender"], data["content"]
+    content = content.replace("\r", "")
 
     error = validate_message(title, sender, content)
     if error is not None:
