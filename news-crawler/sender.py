@@ -36,8 +36,8 @@ def _send(subject, content):
     try:
         formatted_content = format_content(content)
         message = thecampy.Message(subject, formatted_content)
-        client = thecampy.client()
-        client.login(EMAIL, PASSWORD)
+        
+        client = thecampy.Client(EMAIL, PASSWORD)
         client.get_soldier(SOLDIER)
         client.send_message(SOLDIER, message)
         print(f"[+] {datetime.now()} - NEWS SENT")

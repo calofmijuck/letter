@@ -5,7 +5,7 @@ from .models import Message
 
 SOLDIER = thecampy.Soldier(NAME, BIRTH, ENTER_DATE, UNIT_NAME)
 
-client = thecampy.client()
+client = thecampy.Client(EMAIL, PASSWORD)
 
 
 def format_content(content):
@@ -13,10 +13,10 @@ def format_content(content):
     content = content.replace("<p></p>", "<p>&nbsp;</p>")
     return content
 
+
 def send_message(message: Message):
     title = f"({message.sender}) {message.title}"
     message = thecampy.Message(title, format_content(message.content))
 
-    client.login(EMAIL, PASSWORD)
     client.get_soldier(SOLDIER)
     client.send_message(SOLDIER, message)
