@@ -1,5 +1,8 @@
-<h1>인편 쓰기</h1>
+{% load static %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<h1>인편 쓰기</h1>
 
 <a href="/"><button>돌아가기</button></a>
 
@@ -24,52 +27,3 @@
     <input type="submit" value="보내기">
 
 </form>
-
-
-<style>
-    .error-message {
-        color: red;
-        font-weight: bold;
-    }
-
-    .sender {
-        height: 50px;
-    }
-
-    .title {
-        height: 50px;
-    }
-
-    textarea {
-        width: 100%;
-        height: 200px;
-        padding: 10px;
-        box-sizing: border-box;
-        border: solid 2px #1E90FF;
-        border-radius: 5px;
-        font-size: 20px;
-        resize: both;
-    }
-
-    input {
-        border: none;
-        background-color: black;
-        color: white;
-        padding: 16px 32px;
-        text-decoration: none;
-        margin: 4px 2px;
-        font-size: 100%;
-        cursor: pointer;
-    }
-
-    button {
-        border: none;
-        background-color: black;
-        color: white;
-        padding: 16px 32px;
-        text-decoration: none;
-        margin: 4px 2px;
-        font-size: 100%;
-        cursor: pointer;
-    }
-</style>

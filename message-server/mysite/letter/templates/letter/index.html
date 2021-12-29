@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 <title>{{ name }} 님의 인터넷 편지</title>
 <h2>{{ name }} 님의 인터넷 편지 목록</h2>
 
@@ -14,23 +18,3 @@
 {% else %}
 <p>아직 편지가 없어요 ㅠ</p>
 {% endif %}
-
-
-<style>
-    li {
-        font-size: 110%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    button {
-        border: none;
-        background-color: black;
-        color: white;
-        padding: 16px 32px;
-        text-decoration: none;
-        margin: 4px 2px;
-        font-size: 100%;
-        cursor: pointer;
-    }
-</style>
