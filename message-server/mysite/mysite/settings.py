@@ -126,6 +126,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 CRONJOBS = [
     ("*/30 * * * *", "letter.cron.send_failed_messages", ">> /logs/cronjobs.log 2>&1"),
     ("*/30 * * * *", "letter.cron.test", ">> /logs/test.log 2>&1"),
