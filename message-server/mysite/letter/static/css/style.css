@@ -1,5 +1,6 @@
 body {
   font-family: "Pretendard-Regular";
+  margin: 10px !important;  
 }
 
 li {
@@ -9,12 +10,8 @@ li {
 }
 
 button {
-  border: none;
-  background-color: black;
-  color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
+  width: 100%;
+  margin: 10px 0px !important;
   font-size: 100%;
   cursor: pointer;
 }
@@ -49,15 +46,15 @@ textarea {
   border-radius: 5px;
   font-size: 20px;
   resize: both;
+  font-family: "Pretendard-Regular";
+  margin-bottom: 0.5rem !important;
 }
 
 input {
+  width: 100%;
   border: none;
-  background-color: black;
   color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
+  margin: 10px 0px !important;
   font-size: 100%;
   cursor: pointer;
 }
