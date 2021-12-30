@@ -3,8 +3,8 @@
 
 육군훈련소(KATC)에 있는 훈련병에게 인터넷 편지를 보내주는 사이트입니다.
 
-![Screenshot from 2021-05-01 09-55-16](https://user-images.githubusercontent.com/38686321/116766190-32c2a280-aa64-11eb-9c17-956140f5950a.png)
-![Screenshot from 2021-05-01 09-55-25](https://user-images.githubusercontent.com/38686321/116766192-33f3cf80-aa64-11eb-8487-9f4b5cc3063f.png)
+<img width="865" alt="Screen Shot 2021-12-30 at 12 57 57" src="https://user-images.githubusercontent.com/38686321/147720635-2f3ef5d3-4e51-4b8d-af0d-7fd165dec2b7.png">
+<img width="864" alt="Screen Shot 2021-12-30 at 12 59 20" src="https://user-images.githubusercontent.com/38686321/147720642-317b9123-2a5e-4a53-b493-bcbb94e57eb9.png">
 
 ## 🛠️ Features
 
